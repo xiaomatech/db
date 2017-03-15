@@ -44,7 +44,11 @@
 ```
     https://github.com/Meituan-Dianping/SQLAdvisor/blob/master/doc/THEORY_PRACTICES.md
     
-    ./sqladvisor -h xx  -P xx  -u xx -p 'xx' -d xx -q "sql" -v 1
+    wget https://raw.githubusercontent.com/xiaomatech/db/master/libsqlparser.so -O /usr/lib64/libsqlparser-debug.so
+    wget https://raw.githubusercontent.com/xiaomatech/db/master/sqladvisor -O /usr/sbin/sqladvisor
+    chmod a+x /usr/sbin/sqladvisor
+    
+    sqladvisor -h xx  -P xx  -u xx -p 'xx' -d xx -q "sql" -v 1
     
     echo '
     [sqladvisor]
@@ -56,7 +60,7 @@
     sqls=sql1;sql2;sql3....
     '>sql.cnf
     
-    ./sqladvisor -f sql.cnf  -v 1
+    sqladvisor -f sql.cnf  -v 1
     
     
 ```
