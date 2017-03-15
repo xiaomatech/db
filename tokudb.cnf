@@ -1,0 +1,14 @@
+plugin_load = "validate_password.so;rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so;ha_tokudb.so"
+tokudb-data-dir = /data/mysql/3306/tokudbdata
+tokudb-log-dir  = /data/mysql/3306/tokudblog
+tokudb_tmp_dir  = /data/mysql/3306/tokudbtmp
+tokudb_row_format = tokudb_fast
+tokudb_cache_size = 28G
+tokudb_commit_sync = 0
+tokudb_directio = 1
+tokudb_read_block_size = 128K
+tokudb_read_buf_size = 128K
+tokudb_write_status_frequency =1
+tokudb_read_status_frequency = 1   
+tokudb_buffer_pool_ratio = 60
+
