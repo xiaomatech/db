@@ -1,11 +1,11 @@
 # db配置
 - mysql
 ```
-  yum install -y Percona-Server-server-57 Percona-Server-tokudb-57 percona-toolkit percona-xtrabackup
+  yum install -y gperftools-libs Percona-Server-server-57 Percona-Server-tokudb-57 percona-toolkit percona-xtrabackup
 ```
 - mongodb
 ```
-  yum install -y Percona-Server-MongoDB-server Percona-Server-MongoDB-mongos Percona-Server-MongoDB-tools
+  yum install -y gperftools-libs Percona-Server-MongoDB-server Percona-Server-MongoDB-mongos Percona-Server-MongoDB-tools
 ```
 
 - gh-ost
