@@ -13,6 +13,23 @@
     https://github.com/github/gh-ost/blob/master/doc/cheatsheet.md
 ```
 
+- anemometer
+```
+   慢日志入库 (pt-query-digest)
+```
+
+- ubackup
+```
+  mysql 备份
+  https://github.com/lustlost/ubackup
+```
+
+- Inception
+```
+  SQL审核 发布
+  https://github.com/cookieY/Yearning
+```
+
 - dbproxy
 
 ```
