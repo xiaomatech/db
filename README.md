@@ -8,25 +8,26 @@
   yum install -y gperftools-libs Percona-Server-MongoDB-server Percona-Server-MongoDB-mongos Percona-Server-MongoDB-tools
 ```
 
-- gh-ost
+- 大表发布 gh-ost
 ```
     https://github.com/github/gh-ost/blob/master/doc/cheatsheet.md
 ```
 
-- anemometer
+- 慢日志分析
 ```
-   慢日志入库 (pt-query-digest)
+   慢日志入库 (pt-query-digest/anemometer)
 ```
 
-- ubackup
+- mysql 备份
 ```
-  mysql 备份
+  https://github.com/ShahriyarR/MySQL-AutoXtraBackup
+  https://github.com/dotmanila/pyxbackup
   https://github.com/lustlost/ubackup
 ```
 
-- Inception
+- SQL审核 发布 
 ```
-  SQL审核 发布
+  Inception
   https://github.com/cookieY/Yearning
 ```
 
