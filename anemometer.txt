@@ -1,0 +1,55 @@
+This is a sample script which will enable slow query log on a local mysql server for given period of time, then turn it off again and process the log with pt-query-digest and send it to the database where anemometer query data is stored.
+
+This script contains help info (use --help)
+
+Usage: ./scripts/anemometer_collect.sh --interval <seconds>
+
+Options:
+    --socket -S              The mysql socket to use
+    --defaults-file          The defaults file to use for the client
+    --interval -i            The collection duration
+    --rate                   Set log_slow_rate_limit (For Percona MySQL Only)
+
+    --history-db-host        Hostname of anemometer database server
+    --history-db-port        Port of anemometer database server
+    --history-db-name        Database name of anemometer database server (Default slow_query_log)
+    --history-defaults-file  Defaults file to pass to pt-query-digest for connecting to the remote anemometer database
+Basic Usage
+
+The script will find the slow query log location from the local server, enable the slow log, wait, then disable it again. It also needs filesystem access to the mysql slow log file. This is often run under sudo for that purpose.
+
+sudo scripts/anemometer_collect.sh --interval 30 --history-db-host=anemometer.example.com
+Local MySQL Permissions
+
+So if you just run that command, you'll probably get some access denied errors like:
+
+ERROR 1227 (42000) at line 1: Access denied; you need (at least one of) the SUPER privilege(s) for this operation
+Error: cannot enable slow log. Aborting
+This means you need a mysql account on the database instance from which you want to collect slow logs which has privileges to run SET GLOBAL slow_query_log=1
+
+mysql -e "GRANT SUPER ON *.* TO 'anemometer_local'@'localhost' IDENTIFIED BY 'superSecurePass'"
+Now to tell the collection script about the user & pass you have created by creating a defaults-file:
+
+vi etc/anemometer.local.cnf
+[client]
+user=anemometer_local
+password=superSecurePass
+Now you can run the script with:
+
+sudo scripts/anemometer_collect.sh --interval 30  \
+  --history-db-host=anemometer.example.com \
+  --defaults-file=etc/anemometer.local.cnf
+Anemometer Digest Database Permissions
+
+Now that we've resolved the local permissions, there are the remote server which pt-query-digest which store its results. We can specify a different defaults file option to use there:
+
+sudo scripts/anemometer_collect.sh --interval 30 \
+  --history-db-host=anemometer.example.com  \
+  --defaults-file=etc/anemometer.local.cnf \
+  --history-defaults-file=etc/anemometer.remote.cnf
+Using Cron
+
+The goal should be to set this up on cron so you can generate regular collections
+
+*/5 * * * * anemometer_collect.sh --interval 10 [ options ]
+
