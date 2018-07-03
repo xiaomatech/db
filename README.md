@@ -11,6 +11,7 @@
 - 大表发布 gh-ost
 ```
     https://github.com/github/gh-ost/blob/master/doc/cheatsheet.md
+    https://github.com/github/gh-ost/releases/download/v1.0.46/gh-ost-1.0.46-1.x86_64.rpm
 ```
 
 - 慢日志分析
